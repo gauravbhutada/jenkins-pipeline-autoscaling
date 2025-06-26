@@ -5,7 +5,7 @@ resource "aws_instance" "server-1" {
     subnet_id = aws_subnet.sub1.id
     vpc_security_group_ids = [aws_security_group.my-sg.id]
 
-    user_data = base64encode(<<-EOF
+    user_data = <<-EOF
               #!/bin/bash
               apt-get update -y
               apt-get install nginx -y
@@ -13,7 +13,7 @@ resource "aws_instance" "server-1" {
               systemctl enable nginx
               echo "Hello from Gaurav! This is server 1." > /var/www/html/index.html
             EOF
-		)
+		
 
 
     tags = {
@@ -28,7 +28,7 @@ resource "aws_instance" "server-2" {
     subnet_id = aws_subnet.sub2.id
     vpc_security_group_ids = [aws_security_group.my-sg.id]
 
-    user_data = base64encode(<<-EOF
+    user_data = <<-EOF
               #!/bin/bash
               apt-get update -y
               apt-get install nginx -y
@@ -36,7 +36,7 @@ resource "aws_instance" "server-2" {
               systemctl enable nginx
               echo "Hello from Gaurav! This is server 2." > /var/www/html/index.html
             EOF
-		)
+		
     
     tags = {
         Name = "Server-2"
